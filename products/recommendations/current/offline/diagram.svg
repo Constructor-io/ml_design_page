@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 780" font-family="monospace" font-size="12">
+  <defs>
+    <marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,1 L7,4 L0,7" fill="none" stroke="#475569" stroke-width="1.2"/></marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="190" y="20" text-anchor="middle" fill="#94a3b8" font-size="10">CURRENT STATE — OFFLINE PIPELINE</text>
+
+  <!-- Candidate Generation -->
+  <g data-click="embeddings" style="cursor:pointer">
+    <rect x="10" y="35" width="360" height="220" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="55" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">Candidate Generation</text>
+  </g>
+
+  <g data-click="embeddings" style="cursor:pointer">
+    <rect x="25" y="65" width="155" height="28" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+    <text x="102" y="83" text-anchor="middle" fill="#1e293b" font-size="10">Embeddings (Granne)</text>
+  </g>
+  <g data-click="lightfm" style="cursor:pointer">
+    <rect x="195" y="65" width="155" height="28" rx="5" fill="#e7f5ff" stroke="#339af0"/>
+    <text x="272" y="83" text-anchor="middle" fill="#1e293b" font-size="10">LightFM (CF + i2i)</text>
+  </g>
+  <g data-click="w2v" style="cursor:pointer">
+    <rect x="25" y="100" width="155" height="28" rx="5" fill="#fff9db" stroke="#f59f00"/>
+    <text x="102" y="118" text-anchor="middle" fill="#1e293b" font-size="10">Word2Vec</text>
+  </g>
+  <g data-click="vit" style="cursor:pointer">
+    <rect x="195" y="100" width="155" height="28" rx="5" fill="#e6fcf5" stroke="#2b8a3e"/>
+    <text x="272" y="118" text-anchor="middle" fill="#1e293b" font-size="10">ViT / Image</text>
+  </g>
+  <g data-click="dual_encoder" style="cursor:pointer">
+    <rect x="25" y="135" width="155" height="28" rx="5" fill="#fff5f5" stroke="#e03131"/>
+    <text x="102" y="153" text-anchor="middle" fill="#1e293b" font-size="10">Dual-Encoder (LLM)</text>
+  </g>
+  <g data-click="graph_methods" style="cursor:pointer">
+    <rect x="195" y="135" width="155" height="28" rx="5" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="272" y="153" text-anchor="middle" fill="#1e293b" font-size="10">ALS / FP-Growth</text>
+  </g>
+  <g data-click="graph_methods" style="cursor:pointer">
+    <rect x="25" y="170" width="155" height="28" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+    <text x="102" y="188" text-anchor="middle" fill="#1e293b" font-size="10">Co-Clicks</text>
+  </g>
+  <g data-click="llm_labeling" style="cursor:pointer">
+    <rect x="195" y="170" width="155" height="28" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+    <text x="272" y="188" text-anchor="middle" fill="#1e293b" font-size="10">LLM Labeling</text>
+  </g>
+
+  <text x="190" y="225" text-anchor="middle" fill="#64748b" font-size="9">6 embedding types + 3 graph methods + LLM labels</text>
+
+  <line x1="190" y1="255" x2="190" y2="275" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Stacking -->
+  <g data-click="stacking" style="cursor:pointer">
+    <rect x="60" y="278" width="260" height="55" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="301" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Stacking (StackMixer)</text>
+    <text x="190" y="320" text-anchor="middle" fill="#64748b" font-size="9">round-robin merge, 50 candidates, dedup</text>
+  </g>
+
+  <line x1="190" y1="333" x2="190" y2="353" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Offline Reranker -->
+  <g data-click="reranker" style="cursor:pointer">
+    <rect x="10" y="356" width="360" height="80" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="381" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Offline Reranker</text>
+    <text x="190" y="400" text-anchor="middle" fill="#64748b" font-size="9">LightGBM LambdaRank (500 trees, depth 7)</text>
+    <text x="190" y="415" text-anchor="middle" fill="#64748b" font-size="9">pairwise stats + embedding scores + catalog attrs</text>
+  </g>
+
+  <line x1="190" y1="436" x2="190" y2="456" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- LLM Filtering -->
+  <g data-click="llm_labeling" style="cursor:pointer">
+    <rect x="60" y="459" width="260" height="45" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="479" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">LLM Filtering/Boosting</text>
+    <text x="190" y="494" text-anchor="middle" fill="#64748b" font-size="9">GPT-labeled pairs: filter irrelevant or boost</text>
+  </g>
+
+  <line x1="190" y1="504" x2="190" y2="524" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Index Building -->
+  <g data-click="indexing" style="cursor:pointer">
+    <rect x="10" y="527" width="360" height="80" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="552" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Index Building & Graph Merge</text>
+    <text x="190" y="571" text-anchor="middle" fill="#64748b" font-size="9">per-strategy JSONL → MergeSimilarItemsGraphsV2</text>
+    <text x="190" y="586" text-anchor="middle" fill="#64748b" font-size="9">{seed_item → {mapping_type → {candidate: score}}}</text>
+  </g>
+
+  <line x1="190" y1="607" x2="190" y2="627" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- DynamoDB -->
+  <g data-click="indexing" style="cursor:pointer">
+    <rect x="60" y="630" width="260" height="55" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="190" y="653" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">DynamoDB + KV Service</text>
+    <text x="190" y="672" text-anchor="middle" fill="#64748b" font-size="9">dp-global-item-to-items-graph-prod</text>
+  </g>
+
+  <line x1="190" y1="685" x2="190" y2="705" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Scheduling -->
+  <g data-click="scheduling" style="cursor:pointer">
+    <rect x="60" y="708" width="260" height="50" rx="6" fill="#f7f3eb" stroke="#64748b"/>
+    <text x="190" y="728" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Daily Airflow DAGs</text>
+    <text x="190" y="746" text-anchor="middle" fill="#64748b" font-size="9">all models retrained daily, graph merged daily</text>
+  </g>
+</svg>

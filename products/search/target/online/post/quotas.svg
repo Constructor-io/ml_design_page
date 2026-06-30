@@ -1,0 +1,50 @@
+<svg viewBox="0 0 680 200" style="width:100%;max-width:680px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <!-- Legend -->
+  <rect x="20" y="10" width="12" height="12" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="36" y="20" fill="#1e293b" font-size="10">II</text>
+  <rect x="80" y="10" width="12" height="12" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="96" y="20" fill="#1e293b" font-size="10">CES</text>
+  <rect x="140" y="10" width="12" height="12" fill="#ede9fe" stroke="#6366f1"/>
+  <text x="156" y="20" fill="#1e293b" font-size="10">Perso</text>
+  <rect x="220" y="10" width="12" height="12" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="236" y="20" fill="#1e293b" font-size="10">Compl</text>
+  <rect x="300" y="10" width="12" height="12" fill="#fce7f3" stroke="#ec4899"/>
+  <text x="316" y="20" fill="#1e293b" font-size="10">Explor</text>
+
+  <!-- Query 1: Nike Air Max 90 (navigational) -->
+  <text x="20" y="55" fill="#1e293b" font-size="10" font-weight="bold">"Nike Air Max 90"</text>
+  <text x="20" y="67" fill="#94a3b8" font-size="9">navigational</text>
+  <rect x="160" y="42" width="335" height="28" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="300" y="60" fill="#92400e" font-size="10">600</text>
+  <rect x="495" y="42" width="112" height="28" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="0.8"/>
+  <text x="535" y="60" fill="#1e40af" font-size="10">200</text>
+  <rect x="607" y="42" width="28" height="28" rx="3" fill="#ede9fe" stroke="#6366f1" stroke-width="0.8"/>
+  <rect x="635" y="42" width="28" height="28" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="0.8"/>
+  <rect x="663" y="42" width="17" height="28" rx="3" fill="#fce7f3" stroke="#ec4899" stroke-width="0.8"/>
+
+  <!-- Query 2: gift for mom (exploratory) -->
+  <text x="20" y="110" fill="#1e293b" font-size="10" font-weight="bold">"gift for mom"</text>
+  <text x="20" y="122" fill="#94a3b8" font-size="9">exploratory</text>
+  <rect x="160" y="97" width="90" height="28" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="185" y="115" fill="#92400e" font-size="10">200</text>
+  <rect x="250" y="97" width="181" height="28" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="0.8"/>
+  <text x="320" y="115" fill="#1e40af" font-size="10">400</text>
+  <rect x="431" y="97" width="136" height="28" rx="3" fill="#ede9fe" stroke="#6366f1" stroke-width="0.8"/>
+  <text x="480" y="115" fill="#4338ca" font-size="10">300</text>
+  <rect x="567" y="97" width="90" height="28" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="595" y="115" fill="#166534" font-size="10">200</text>
+  <rect x="657" y="97" width="23" height="28" rx="3" fill="#fce7f3" stroke="#ec4899" stroke-width="0.8"/>
+
+  <!-- Query 3: red dress (attribute) -->
+  <text x="20" y="165" fill="#1e293b" font-size="10" font-weight="bold">"red dress under $50"</text>
+  <text x="20" y="177" fill="#94a3b8" font-size="9">attribute</text>
+  <rect x="160" y="152" width="198" height="28" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="0.8"/>
+  <text x="235" y="170" fill="#92400e" font-size="10">400</text>
+  <rect x="358" y="152" width="148" height="28" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="0.8"/>
+  <text x="412" y="170" fill="#1e40af" font-size="10">300</text>
+  <rect x="506" y="152" width="99" height="28" rx="3" fill="#ede9fe" stroke="#6366f1" stroke-width="0.8"/>
+  <text x="540" y="170" fill="#4338ca" font-size="10">200</text>
+  <rect x="605" y="152" width="50" height="28" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="0.8"/>
+  <text x="615" y="170" fill="#166534" font-size="9">100</text>
+  <rect x="655" y="152" width="25" height="28" rx="3" fill="#fce7f3" stroke="#ec4899" stroke-width="0.8"/>
+</svg>

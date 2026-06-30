@@ -1,0 +1,18 @@
+<svg viewBox="0 0 680 180" style="width:100%;max-width:680px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <!-- Factors -->
+  <rect x="20" y="10" width="200" height="34" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="35" y="31" fill="#1e40af" font-size="10" font-weight="bold">Relevance</text>
+  <text x="230" y="31" fill="#475569" font-size="10">Does this product match what the user searched for?</text>
+
+  <rect x="20" y="52" width="200" height="34" rx="4" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="35" y="73" fill="#166534" font-size="10" font-weight="bold">Revenue</text>
+  <text x="230" y="73" fill="#475569" font-size="10">Likelihood of purchase × product value</text>
+
+  <rect x="20" y="94" width="200" height="34" rx="4" fill="#ede9fe" stroke="#6366f1" stroke-width="1.2"/>
+  <text x="35" y="115" fill="#4338ca" font-size="10" font-weight="bold">Diversity</text>
+  <text x="230" y="115" fill="#475569" font-size="10">Avoid showing 10 near-identical products in a row</text>
+
+  <rect x="20" y="136" width="200" height="34" rx="4" fill="#fce7f3" stroke="#ec4899" stroke-width="1.2"/>
+  <text x="35" y="157" fill="#9d174d" font-size="10" font-weight="bold">Freshness</text>
+  <text x="230" y="157" fill="#475569" font-size="10">Give new products a boost so they can prove themselves</text>
+</svg>

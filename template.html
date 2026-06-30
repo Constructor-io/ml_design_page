@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ML Design</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: #ffffff; color: #010101; min-height: 100vh; }
+
+#layout { display: flex; height: 100vh; }
+
+/* Product menu — removed, replaced by nav drawer */
+
+#left { width: 35%; min-width: 320px; display: flex; flex-direction: column; background: #f7f3eb; border-right: 1px solid #e8e8e8; }
+
+/* Mode controls bar */
+#mode-bar { display: flex; align-items: center; gap: 8px; padding: 0 12px; height: 52px; flex-shrink: 0; }
+
+/* Segmented control */
+.seg { display: inline-flex; background: rgba(0,0,0,0.06); border-radius: 6px; padding: 2px; }
+.seg button { border: none; background: transparent; padding: 5px 10px; font-size: 11px; font-weight: 500; cursor: pointer; color: #777; border-radius: 4px; font-family: inherit; transition: all 0.15s; white-space: nowrap; }
+.seg button.active { background: #fff; color: #010101; box-shadow: 0 1px 2px rgba(0,0,0,0.08); font-weight: 600; }
+.seg button:not(.active):hover { color: #333; }
+
+#svg-container { flex: 1; overflow-y: auto; padding: 24px; }
+#svg-container svg { width: 100%; height: auto; display: block; background: #ffffff; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+#svg-container svg g[data-click] { cursor: pointer; transition: opacity 0.15s; }
+#svg-container svg g[data-click]:hover { opacity: 0.75; }
+
+#panel { display: block; width: 65%; overflow-y: auto; padding: 48px 56px; background: #ffffff; }
+#panel h2 { color: #010101; margin-bottom: 16px; font-size: 28px; font-weight: 600; letter-spacing: -0.5px; }
+#panel h3 { color: #010101; margin: 32px 0 12px; font-size: 16px; font-weight: 600; }
+#panel h4 { color: #010101; margin: 24px 0 8px; font-size: 14px; font-weight: 600; }
+#panel p, #panel li { font-size: 15px; line-height: 1.75; color: #333333; }
+#panel ul, #panel ol { padding-left: 20px; margin-bottom: 16px; }
+#panel li { margin-bottom: 4px; }
+#panel code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'SF Mono', 'Fira Code', monospace; }
+#panel pre { background: #f7f3eb; border: none; border-radius: 12px; padding: 20px 24px; margin: 16px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 13px; overflow-x: auto; color: #010101; line-height: 1.7; }
+#panel pre code { background: none; padding: 0; }
+#panel table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+#panel th, #panel td { border: 1px solid #e8e8e8; padding: 10px 14px; text-align: left; }
+#panel th { background: #f7f3eb; font-weight: 600; color: #010101; }
+#panel td { color: #333333; }
+#panel strong { color: #010101; }
+#panel blockquote { border-left: 3px solid #e8e8e8; padding-left: 16px; margin: 16px 0; color: #666; }
+
+/* Variant tabs */
+.variant-tabs { display: flex; gap: 0; margin: 0 0 24px 0; border-bottom: 1px solid #e8e8e8; flex-wrap: wrap; }
+.variant-tabs button { border: none; background: transparent; padding: 10px 16px; font-size: 12px; font-weight: 500; cursor: pointer; color: #999; transition: all 0.15s; font-family: inherit; border-bottom: 2px solid transparent; white-space: nowrap; }
+.variant-tabs button.active { color: #010101; border-bottom-color: #010101; }
+.variant-tabs button.proposal { color: #7c3aed; }
+.variant-tabs button.proposal.active { border-bottom-color: #7c3aed; }
+
+/* Status badges */
+.status-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; margin-left: 8px; vertical-align: middle; }
+.status-badge.proposal { background: #ede9fe; color: #6d28d9; }
+.status-badge.accepted { background: #dcfce7; color: #166534; }
+.status-badge.experimental { background: #fef3c7; color: #92400e; }
+
+/* Author tag */
+.author-tag { font-size: 12px; color: #64748b; margin-bottom: 16px; }
+
+/* Source link */
+.source-link { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; padding: 8px 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 12px; font-family: 'SF Mono', 'Fira Code', monospace; }
+.source-link .path { color: #64748b; flex: 1; }
+.source-link a { color: #2563eb; text-decoration: none; font-family: -apple-system, sans-serif; font-weight: 500; white-space: nowrap; }
+.source-link a:hover { text-decoration: underline; }
+
+/* Cross-reference links */
+.block-ref { color: #2563eb; text-decoration: none; border-bottom: 1px dashed #93c5fd; }
+.block-ref:hover { border-bottom-style: solid; }
+
+#placeholder { display: flex; align-items: center; justify-content: center; height: 100%; color: #999; font-size: 15px; }
+
+/* Empty product state */
+.empty-state { display: flex; align-items: center; justify-content: center; height: 100%; color: #999; font-size: 14px; text-align: center; padding: 40px; }
+
+/* Slide-out nav drawer */
+#nav-drawer { position: fixed; top: 0; left: 0; bottom: 0; width: 260px; background: #1a1a1a; color: #fff; z-index: 1000; transform: translateX(-100%); transition: transform 0.25s ease; display: flex; flex-direction: column; box-shadow: 4px 0 24px rgba(0,0,0,0.2); }
+#nav-drawer.open { transform: translateX(0); }
+#nav-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 20px 16px; border-bottom: 1px solid #333; }
+#nav-drawer-header h3 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #999; }
+#nav-drawer-close { border: none; background: none; color: #666; font-size: 20px; cursor: pointer; padding: 4px 8px; border-radius: 4px; line-height: 1; }
+#nav-drawer-close:hover { color: #fff; background: #333; }
+#nav-drawer-list { flex: 1; overflow-y: auto; padding: 8px; }
+#nav-drawer-list button { display: block; width: 100%; text-align: left; border: none; background: transparent; padding: 12px 16px; font-size: 14px; color: #ccc; cursor: pointer; border-radius: 8px; font-family: inherit; transition: background 0.1s; margin-bottom: 2px; }
+#nav-drawer-list button:hover { background: #2a2a2a; color: #fff; }
+#nav-drawer-list button.active { background: #333; color: #fff; font-weight: 500; }
+#nav-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 999; opacity: 0; pointer-events: none; transition: opacity 0.25s; }
+#nav-backdrop.open { opacity: 1; pointer-events: auto; }
+
+/* Menu trigger + product label */
+#nav-trigger { display: flex; align-items: center; gap: 8px; border: none; background: rgba(0,0,0,0.04); height: 32px; padding: 0 12px 0 10px; border-radius: 6px; cursor: pointer; transition: background 0.15s; font-family: inherit; flex-shrink: 0; }
+#nav-trigger:hover { background: rgba(0,0,0,0.07); }
+#nav-trigger svg { width: 14px; height: 14px; flex-shrink: 0; }
+#nav-trigger span { font-size: 12px; font-weight: 500; color: #555; }
+</style>
+</head>
+<body>
+<div id="nav-backdrop" onclick="closeDrawer()"></div>
+<div id="nav-drawer">
+<div id="nav-drawer-header"><h3>Products</h3><button id="nav-drawer-close" onclick="closeDrawer()">&times;</button></div>
+<div id="nav-drawer-list"></div>
+</div>
+<div id="layout">
+<div id="left">
+<div id="mode-bar">
+<button id="nav-trigger" onclick="openDrawer()"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="3" y1="5" x2="15" y2="5"/><line x1="3" y1="9" x2="15" y2="9"/><line x1="3" y1="13" x2="15" y2="13"/></svg><span id="current-product-label"></span></button>
+<div class="seg" id="seg-group"></div>
+<div class="seg" id="seg-variant"></div>
+</div>
+<div id="svg-container"></div>
+</div>
+<div id="panel"><div id="pc"><div id="placeholder">Click on any block to see details</div></div></div>
+</div>
+<script>
+// Data injected by build.py
+const PRODUCTS = {{PRODUCTS_JSON}};
+const PRODUCTS_DATA = {{PRODUCTS_DATA}};
+
+// Current state
+let currentProduct = null;
+let currentBlocks = {};
+let currentBlocksByView = {};
+let currentDiagrams = [];
+
+function sourceLink(source) {
+  if (!source) return '';
+  const ghUrl = `https://github.com/Constructor-io/ml_design_page/blob/master/${source}`;
+  return `<div class="source-link"><a href="${ghUrl}" target="_blank" class="path">${source}</a></div>`;
+}
+
+function show(blockId) {
+  const block = currentBlocks[blockId];
+  if (!block) return;
+
+  let html = '';
+  html += sourceLink(block.source);
+
+  if (block.variants && block.variants.length > 1) {
+    html += '<div class="variant-tabs">';
+    block.variants.forEach(v => {
+      const cls = v.status === 'proposal' ? 'proposal' : '';
+      html += `<button class="${cls}" onclick="showVariant('${blockId}', '${v.id}')">${v.author}: ${v.title}</button>`;
+    });
+    html += '</div>';
+  } else if (block.variants && block.variants.length === 1) {
+    const v = block.variants[0];
+    html += `<div class="author-tag">Also: <a href="#" class="block-ref" onclick="showVariant('${blockId}', '${v.id}'); return false;">${v.author}: ${v.title}</a> <span class="status-badge ${v.status}">${v.status}</span></div>`;
+  }
+
+  html += `<div id="variant-content">${block.html}</div>`;
+  document.getElementById("pc").innerHTML = html;
+}
+
+function showVariant(blockId, variantId) {
+  const block = currentBlocks[blockId];
+  if (!block) return;
+
+  let content = '';
+  let variantSource = '';
+  if (variantId === 'default') {
+    content = block.html;
+    variantSource = sourceLink(block.source);
+  } else {
+    const variant = block.variants.find(v => v.id === variantId);
+    if (!variant) return;
+    variantSource = sourceLink(variant.source);
+    content = `<div class="author-tag">Author: ${variant.author} | Status: <span class="status-badge ${variant.status}">${variant.status}</span></div>`;
+    if (variant.summary) content += `<blockquote>${variant.summary}</blockquote>`;
+    content += variant.html;
+  }
+
+  const srcEl = document.querySelector('.source-link');
+  if (srcEl && variantSource) srcEl.outerHTML = variantSource;
+  else if (srcEl && !variantSource) srcEl.outerHTML = '';
+
+  document.getElementById("variant-content").innerHTML = content;
+
+  const tabs = document.querySelectorAll('.variant-tabs button');
+  tabs.forEach((tab, i) => {
+    tab.classList.remove('active');
+    if (i === 0 && variantId === 'default') tab.classList.add('active');
+  });
+  if (variantId !== 'default') {
+    const variant = block.variants.find(v => v.id === variantId);
+    if (variant) {
+      tabs.forEach(tab => {
+        if (tab.textContent.includes(variant.author)) tab.classList.add('active');
+      });
+    }
+  }
+}
+
+function hide() {
+  document.getElementById("pc").innerHTML = '<div id="placeholder">Click on any block to see details</div>';
+}
+
+// Global mode state (persists across product switches)
+let modeGroup = 'target';
+let modeVariant = 'online';
+const DEFAULT_PRODUCT = 'search';
+
+function setMode(group, variant) {
+  if (group !== undefined) modeGroup = group;
+  if (variant !== undefined) modeVariant = variant;
+  updateSegControls();
+  showCurrentDiagram();
+}
+
+function updateSegControls() {
+  // Derive available groups and variants from current diagrams
+  const groups = [...new Set(currentDiagrams.map(d => d.group))];
+  const variants = [...new Set(currentDiagrams.map(d => d.sublabel.toLowerCase()))];
+
+  const segGroup = document.getElementById('seg-group');
+  const segVariant = document.getElementById('seg-variant');
+
+  // Render group segment (Current / Target)
+  if (groups.length > 1) {
+    segGroup.style.display = 'inline-flex';
+    segGroup.innerHTML = groups.map(g =>
+      `<button class="${g === modeGroup ? 'active' : ''}" onclick="setMode('${g}')">${g.charAt(0).toUpperCase() + g.slice(1)}</button>`
+    ).join('');
+  } else if (groups.length === 1) {
+    segGroup.style.display = 'none';
+    modeGroup = groups[0];
+  } else {
+    segGroup.style.display = 'none';
+  }
+
+  // Render variant segment (Online / Offline)
+  if (variants.length > 1) {
+    segVariant.style.display = 'inline-flex';
+    segVariant.innerHTML = variants.map(v =>
+      `<button class="${v === modeVariant ? 'active' : ''}" onclick="setMode(undefined,'${v}')">${v.charAt(0).toUpperCase() + v.slice(1)}</button>`
+    ).join('');
+  } else if (variants.length === 1) {
+    segVariant.style.display = 'none';
+    modeVariant = variants[0];
+  } else {
+    segVariant.style.display = 'none';
+  }
+}
+
+function showCurrentDiagram() {
+  const diagram = currentDiagrams.find(d =>
+    d.group === modeGroup && d.sublabel.toLowerCase() === modeVariant
+  );
+  const container = document.getElementById("svg-container");
+  let activeViewId = null;
+  if (diagram) {
+    container.innerHTML = diagram.svg;
+    activeViewId = diagram.id;
+  } else {
+    // Fallback: try just group match, then first available
+    const groupMatch = currentDiagrams.find(d => d.group === modeGroup);
+    if (groupMatch) {
+      modeVariant = groupMatch.sublabel.toLowerCase();
+      container.innerHTML = groupMatch.svg;
+      activeViewId = groupMatch.id;
+      updateSegControls();
+    } else if (currentDiagrams.length > 0) {
+      modeGroup = currentDiagrams[0].group;
+      modeVariant = currentDiagrams[0].sublabel.toLowerCase();
+      container.innerHTML = currentDiagrams[0].svg;
+      activeViewId = currentDiagrams[0].id;
+      updateSegControls();
+    } else {
+      container.innerHTML = '<div class="empty-state">No diagram for this view</div>';
+    }
+  }
+  // Switch blocks to match current view
+  currentBlocks = (activeViewId && currentBlocksByView[activeViewId]) || {};
+  hide();
+}
+
+function openDrawer() {
+  document.getElementById('nav-drawer').classList.add('open');
+  document.getElementById('nav-backdrop').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.getElementById('nav-backdrop').classList.remove('open');
+}
+
+function switchProduct(productId) {
+  currentProduct = productId;
+  const data = PRODUCTS_DATA[productId];
+  currentBlocksByView = data.blocks_by_view || {};
+  currentDiagrams = data.diagrams;
+
+  // Update drawer active state
+  document.querySelectorAll('#nav-drawer-list button').forEach(btn => {
+    btn.className = btn.dataset.id === productId ? 'active' : '';
+  });
+
+  // Update label
+  const product = PRODUCTS.find(p => p.id === productId);
+  document.getElementById('current-product-label').textContent = product ? product.label : productId;
+
+  // Update segmented controls and show diagram for current mode
+  updateSegControls();
+  showCurrentDiagram();
+
+  closeDrawer();
+  hide();
+}
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") { closeDrawer(); hide(); }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  // Build drawer product list
+  const listEl = document.getElementById("nav-drawer-list");
+  PRODUCTS.forEach((p) => {
+    const btn = document.createElement('button');
+    btn.textContent = p.label;
+    btn.dataset.id = p.id;
+    btn.onclick = () => switchProduct(p.id);
+    listEl.appendChild(btn);
+  });
+
+  // Select default product (search/target/online)
+  const startProduct = PRODUCTS_DATA[DEFAULT_PRODUCT] ? DEFAULT_PRODUCT : (PRODUCTS.length > 0 ? PRODUCTS[0].id : null);
+  if (startProduct) {
+    switchProduct(startProduct);
+  }
+
+  // Handle clicks on SVG blocks
+  document.getElementById("svg-container").addEventListener("click", function(e) {
+    const g = e.target.closest("[data-click]");
+    if (g) show(g.getAttribute("data-click"));
+  });
+});
+</script>
+</body>
+</html>

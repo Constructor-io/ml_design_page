@@ -1,0 +1,22 @@
+# Product registry
+# Each product gets its own directory under products/
+# Only products listed here appear in the menu
+
+- id: search
+  label: Search
+- id: browse
+  label: Browse
+- id: search_suggestions
+  label: Search Suggestions
+- id: autocomplete
+  label: Autocomplete
+- id: recommendations
+  label: Recommendations
+- id: offsite_discovery
+  label: Offsite Discovery
+- id: related_searches
+  label: Related Searches
+- id: asa
+  label: ASA
+- id: quizzes
+  label: Quizzes

@@ -1,0 +1,18 @@
+# Old intermediate output
+search_ml_design_v2.html
+
+# Legacy docs (moved to legacy/)
+legacy/
+
+# IDE
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+
+# Claude Code
+.claude/

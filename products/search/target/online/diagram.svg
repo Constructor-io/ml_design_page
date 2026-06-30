@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 820" font-family="monospace" font-size="12">
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,1 L7,4 L0,7" fill="none" stroke="#475569" stroke-width="1.2"/></marker>
+  </defs>
+
+  <!-- QU section -->
+  <g data-click="qu_overview" style="cursor:pointer">
+    <rect x="10" y="10" width="360" height="95" rx="8" fill="#f8fafc" stroke="#94a3b8"/>
+    <text x="190" y="28" text-anchor="middle" fill="#475569" font-size="11">Query Understanding</text>
+  </g>
+  <g data-click="qu" style="cursor:pointer">
+    <rect x="20" y="38" width="165" height="58" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="102" y="63" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">Query → Structure</text>
+    <text x="102" y="80" text-anchor="middle" fill="#64748b" font-size="9">intent, noun, attrs</text>
+  </g>
+  <g data-click="quotas" style="cursor:pointer">
+    <rect x="195" y="38" width="165" height="58" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="277" y="63" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">Quotas per stream</text>
+    <text x="277" y="80" text-anchor="middle" fill="#64748b" font-size="9">dynamic per-query</text>
+  </g>
+
+  <!-- Arrow QU → L0 -->
+  <line x1="190" y1="105" x2="190" y2="125" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- L0 section -->
+  <g data-click="l0" style="cursor:pointer">
+    <rect x="10" y="128" width="360" height="310" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="148" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">L0: Multi-Stream Retrieval</text>
+  </g>
+
+  <!-- Streams -->
+  <g data-click="ii" style="cursor:pointer">
+    <rect x="25" y="160" width="180" height="32" rx="5" fill="#e7f5ff" stroke="#339af0"/>
+    <text x="35" y="180" fill="#1e293b" font-size="11">📖 II</text>
+  </g>
+  <g data-click="ces" style="cursor:pointer">
+    <rect x="25" y="198" width="180" height="32" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+    <text x="35" y="218" fill="#1e293b" font-size="11">🔮 CES</text>
+  </g>
+  <g data-click="perso" style="cursor:pointer">
+    <rect x="25" y="236" width="180" height="32" rx="5" fill="#fff9db" stroke="#f59f00"/>
+    <text x="35" y="256" fill="#1e293b" font-size="11">👤 Personalized</text>
+  </g>
+  <g data-click="compl" style="cursor:pointer">
+    <rect x="25" y="274" width="180" height="32" rx="5" fill="#fff5f5" stroke="#e03131"/>
+    <text x="35" y="294" fill="#1e293b" font-size="11">🔗 Complementary</text>
+  </g>
+  <g data-click="explor" style="cursor:pointer">
+    <rect x="25" y="312" width="180" height="32" rx="5" fill="#e6fcf5" stroke="#2b8a3e"/>
+    <text x="35" y="332" fill="#1e293b" font-size="11">🌱 Exploration</text>
+  </g>
+  <g data-click="more" style="cursor:pointer">
+    <rect x="25" y="354" width="180" height="32" rx="5" fill="#fff" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4"/>
+    <text x="115" y="374" text-anchor="middle" fill="#64748b" font-size="10">+ more streams...</text>
+  </g>
+
+  <!-- Bracket + arrows to union -->
+  <path d="M205,176 L230,176 L230,370 L205,370" fill="none" stroke="#94a3b8" stroke-width="1"/>
+  <line x1="230" y1="273" x2="255" y2="273" stroke="#94a3b8" stroke-width="1" marker-end="url(#a)"/>
+
+  <!-- Union box -->
+  <g data-click="union" style="cursor:pointer">
+    <rect x="258" y="245" width="105" height="56" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="310" y="266" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="bold">union &amp; dedup</text>
+    <text x="310" y="282" text-anchor="middle" fill="#64748b" font-size="9">~800-1200</text>
+    <text x="310" y="294" text-anchor="middle" fill="#64748b" font-size="9">candidates</text>
+  </g>
+
+  <!-- Arrow L0 → LLM -->
+  <line x1="190" y1="438" x2="190" y2="458" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- LLM filtering -->
+  <g data-click="llm" style="cursor:pointer">
+    <rect x="10" y="461" width="360" height="36" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="483" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">LLM filtering</text>
+  </g>
+
+  <!-- Arrow LLM → L1 -->
+  <line x1="190" y1="497" x2="190" y2="517" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- L1 reranker section -->
+  <g data-click="l1_overview" style="cursor:pointer">
+    <rect x="10" y="520" width="360" height="200" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="540" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">L1: Reranker</text>
+  </g>
+
+  <g data-click="stageA" style="cursor:pointer">
+    <rect x="25" y="550" width="340" height="55" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="195" y="573" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">Stage A</text>
+    <text x="195" y="593" text-anchor="middle" fill="#64748b" font-size="10">(GBDT, all ~1000 candidates) → 100-200</text>
+  </g>
+
+  <!-- Arrow A → B -->
+  <line x1="195" y1="605" x2="195" y2="620" stroke="#475569" stroke-width="1" marker-end="url(#a)"/>
+  <text x="225" y="616" fill="#64748b" font-size="9">100-200 candidates</text>
+
+  <g data-click="stageB" style="cursor:pointer">
+    <rect x="25" y="623" width="340" height="55" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="195" y="646" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">Stage B</text>
+    <text x="195" y="666" text-anchor="middle" fill="#64748b" font-size="10">(Neural, listwise) → final order</text>
+  </g>
+
+  <!-- Arrow → Post -->
+  <line x1="190" y1="720" x2="190" y2="740" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+
+  <!-- Postprocessing -->
+  <g data-click="post" style="cursor:pointer">
+    <rect x="10" y="743" width="360" height="48" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="763" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Postprocessing</text>
+    <text x="190" y="780" text-anchor="middle" fill="#64748b" font-size="9">Merchandising, diversity, slotting</text>
+  </g>
+
+  <!-- Arrow → SERP -->
+  <line x1="190" y1="791" x2="190" y2="808" stroke="#475569" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="190" y="820" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Final SERP</text>
+</svg>

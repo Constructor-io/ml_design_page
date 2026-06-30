@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 520" font-family="monospace" font-size="12">
+  <defs>
+    <marker id="c" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,1 L7,4 L0,7" fill="none" stroke="#475569" stroke-width="1.2"/></marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="190" y="20" text-anchor="middle" fill="#94a3b8" font-size="10">CURRENT STATE</text>
+
+  <!-- Query -->
+  <g data-click="qu" style="cursor:pointer">
+    <rect x="100" y="35" width="180" height="40" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="190" y="60" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">Query Processing</text>
+  </g>
+
+  <line x1="190" y1="75" x2="190" y2="95" stroke="#475569" stroke-width="1.5" marker-end="url(#c)"/>
+
+  <!-- L0: just II -->
+  <g data-click="l0" style="cursor:pointer">
+    <rect x="10" y="98" width="360" height="120" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="118" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">L0: Retrieval</text>
+  </g>
+
+  <g data-click="ii" style="cursor:pointer">
+    <rect x="25" y="128" width="150" height="32" rx="5" fill="#e7f5ff" stroke="#339af0"/>
+    <text x="100" y="148" text-anchor="middle" fill="#1e293b" font-size="11">Inverted Index</text>
+  </g>
+  <g data-click="ces" style="cursor:pointer">
+    <rect x="185" y="128" width="150" height="32" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+    <text x="260" y="148" text-anchor="middle" fill="#1e293b" font-size="11">CES (basic)</text>
+  </g>
+
+  <text x="190" y="190" text-anchor="middle" fill="#64748b" font-size="9">no personalized/complementary/exploration streams</text>
+
+  <line x1="190" y1="218" x2="190" y2="238" stroke="#475569" stroke-width="1.5" marker-end="url(#c)"/>
+
+  <!-- Reranker: single stage -->
+  <g data-click="l1_overview" style="cursor:pointer">
+    <rect x="10" y="241" width="360" height="120" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="261" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">L1: Reranker (single stage)</text>
+  </g>
+
+  <g data-click="stageA" style="cursor:pointer">
+    <rect x="25" y="271" width="340" height="42" rx="6" fill="#e0f2fe" stroke="#0ea5e9"/>
+    <text x="195" y="296" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">GBDT (LightGBM)</text>
+  </g>
+
+  <text x="190" y="335" text-anchor="middle" fill="#94a3b8" font-size="9" font-style="italic">no Stage B neural reranker yet</text>
+
+  <line x1="190" y1="361" x2="190" y2="381" stroke="#475569" stroke-width="1.5" marker-end="url(#c)"/>
+
+  <!-- Post -->
+  <g data-click="post" style="cursor:pointer">
+    <rect x="10" y="384" width="360" height="48" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="404" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Postprocessing</text>
+    <text x="190" y="421" text-anchor="middle" fill="#64748b" font-size="9">basic merchandising rules</text>
+  </g>
+
+  <line x1="190" y1="432" x2="190" y2="452" stroke="#475569" stroke-width="1.5" marker-end="url(#c)"/>
+  <text x="190" y="470" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">SERP</text>
+</svg>

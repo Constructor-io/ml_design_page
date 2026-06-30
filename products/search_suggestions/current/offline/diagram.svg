@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 680" font-family="monospace" font-size="12">
+  <defs>
+    <marker id="b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,1 L7,4 L0,7" fill="none" stroke="#475569" stroke-width="1.2"/></marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="190" y="20" text-anchor="middle" fill="#94a3b8" font-size="10">CURRENT STATE — OFFLINE PIPELINE</text>
+
+  <!-- Suggestion Generation -->
+  <g data-click="suggestions" style="cursor:pointer">
+    <rect x="10" y="35" width="360" height="100" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="55" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">Suggestion Generation</text>
+    <text x="190" y="75" text-anchor="middle" fill="#64748b" font-size="9">CreateSearchSuggestions: behavioral logs → dedup → filter</text>
+    <text x="190" y="92" text-anchor="middle" fill="#64748b" font-size="9">PrepNew: validate via live API (≥1 result matches)</text>
+    <text x="190" y="109" text-anchor="middle" fill="#64748b" font-size="9">UpdateInDB: merge windows → A/B cells → catalog API upload</text>
+  </g>
+
+  <line x1="190" y1="135" x2="190" y2="155" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Index Build -->
+  <g data-click="ss_index" style="cursor:pointer">
+    <rect x="10" y="158" width="360" height="170" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="178" text-anchor="middle" fill="#1e293b" font-size="12" font-weight="bold">Index Build (Spark)</text>
+  </g>
+
+  <g data-click="ss_index" style="cursor:pointer">
+    <rect x="25" y="190" width="155" height="32" rx="5" fill="#e7f5ff" stroke="#339af0"/>
+    <text x="102" y="210" text-anchor="middle" fill="#1e293b" font-size="10">Inverted Index</text>
+  </g>
+  <g data-click="dawg" style="cursor:pointer">
+    <rect x="195" y="190" width="155" height="32" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+    <text x="272" y="210" text-anchor="middle" fill="#1e293b" font-size="10">DAWG</text>
+  </g>
+  <g data-click="dawg" style="cursor:pointer">
+    <rect x="25" y="230" width="155" height="32" rx="5" fill="#fff9db" stroke="#f59f00"/>
+    <text x="102" y="250" text-anchor="middle" fill="#1e293b" font-size="10">Trigram DB</text>
+  </g>
+  <g data-click="dawg" style="cursor:pointer">
+    <rect x="195" y="230" width="155" height="32" rx="5" fill="#e6fcf5" stroke="#2b8a3e"/>
+    <text x="272" y="250" text-anchor="middle" fill="#1e293b" font-size="10">Vocabulary (Keyvi)</text>
+  </g>
+  <g data-click="dawg" style="cursor:pointer">
+    <rect x="25" y="270" width="155" height="32" rx="5" fill="#f8fafc" stroke="#94a3b8"/>
+    <text x="102" y="290" text-anchor="middle" fill="#1e293b" font-size="10">Language Model</text>
+  </g>
+  <g data-click="ss_index" style="cursor:pointer">
+    <rect x="195" y="270" width="155" height="32" rx="5" fill="#fff5f5" stroke="#e03131"/>
+    <text x="272" y="290" text-anchor="middle" fill="#1e293b" font-size="10">Query Items KV</text>
+  </g>
+
+  <text x="190" y="320" text-anchor="middle" fill="#64748b" font-size="9">z-score normalization + keyword + category + embedding adjustments</text>
+
+  <line x1="190" y1="328" x2="190" y2="348" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Related Searches -->
+  <g data-click="related" style="cursor:pointer">
+    <rect x="10" y="351" width="360" height="100" rx="8" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="371" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Related Searches & Reformulations</text>
+    <text x="190" y="393" text-anchor="middle" fill="#64748b" font-size="9">Similar sessions (co-occurring queries)</text>
+    <text x="190" y="408" text-anchor="middle" fill="#64748b" font-size="9">Expanding/refining (subset/superset tokens)</text>
+    <text x="190" y="423" text-anchor="middle" fill="#64748b" font-size="9">Query reformulations (consecutive failed→success pairs)</text>
+    <text x="190" y="438" text-anchor="middle" fill="#64748b" font-size="9">→ Delta table → CES service related_searches index</text>
+  </g>
+
+  <line x1="190" y1="451" x2="190" y2="471" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Synonyms -->
+  <g data-click="keysets" style="cursor:pointer">
+    <rect x="60" y="474" width="260" height="55" rx="6" fill="#f8fafc" stroke="#64748b"/>
+    <text x="190" y="497" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Synonyms</text>
+    <text x="190" y="515" text-anchor="middle" fill="#64748b" font-size="9">manual + auto + auto-reviewed + one-way + weighted</text>
+  </g>
+
+  <line x1="190" y1="529" x2="190" y2="549" stroke="#475569" stroke-width="1.5" marker-end="url(#b)"/>
+
+  <!-- Scheduling -->
+  <g data-click="ss_scheduling" style="cursor:pointer">
+    <rect x="60" y="552" width="260" height="55" rx="6" fill="#f7f3eb" stroke="#64748b"/>
+    <text x="190" y="575" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">Airflow Scheduling</text>
+    <text x="190" y="593" text-anchor="middle" fill="#64748b" font-size="9">suggestions: 12:30 UTC | reformulations: 3:00 UTC | index: on-trigger</text>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 300" font-family="monospace" font-size="12">
+  <rect x="0" y="0" width="380" height="300" fill="#f8fafc"/>
+  <text x="190" y="20" text-anchor="middle" fill="#94a3b8" font-size="10">AUTOCOMPLETE — CURRENT STATE</text>
+
+  <g data-click="overview" style="cursor:pointer">
+    <rect x="40" y="50" width="300" height="50" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-dasharray="4"/>
+    <text x="190" y="80" text-anchor="middle" fill="#92400e" font-size="11">Prefix Matching (Trie / DAWG)</text>
+  </g>
+
+  <g data-click="overview" style="cursor:pointer">
+    <rect x="40" y="120" width="300" height="50" rx="8" fill="#e0f2fe" stroke="#0ea5e9" stroke-dasharray="4"/>
+    <text x="190" y="150" text-anchor="middle" fill="#0c4a6e" font-size="11">Candidate Ranking</text>
+  </g>
+
+  <g data-click="overview" style="cursor:pointer">
+    <rect x="40" y="190" width="300" height="50" rx="8" fill="#f0fdf4" stroke="#22c55e" stroke-dasharray="4"/>
+    <text x="190" y="220" text-anchor="middle" fill="#166534" font-size="11">Result Types (items, suggestions, categories)</text>
+  </g>
+
+  <text x="190" y="275" text-anchor="middle" fill="#cbd5e1" font-size="10" font-style="italic">TODO: detailed architecture diagram</text>
+</svg>

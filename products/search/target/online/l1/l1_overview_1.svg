@@ -1,0 +1,34 @@
+<svg viewBox="0 0 700 180" style="width:100%;max-width:700px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs><marker id="l1-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker></defs>
+
+  <!-- Input -->
+  <rect x="20" y="65" width="100" height="40" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="37" y="83" fill="#1e293b" font-size="10">~1000</text>
+  <text x="33" y="97" fill="#64748b" font-size="9">candidates</text>
+
+  <line x1="120" y1="85" x2="155" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#l1-arr)"/>
+
+  <!-- Stage A -->
+  <rect x="160" y="40" width="200" height="90" rx="6" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="195" y="62" fill="#0c4a6e" font-size="11" font-weight="bold">Stage A: Quick Sort</text>
+  <text x="175" y="82" fill="#475569" font-size="10">Scores each item alone</text>
+  <text x="175" y="97" fill="#475569" font-size="10">Fast, all 1000 at once</text>
+  <text x="175" y="112" fill="#475569" font-size="10">Keeps top 100-200</text>
+
+  <line x1="360" y1="85" x2="395" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#l1-arr)"/>
+  <text x="365" y="75" fill="#64748b" font-size="9">top 200</text>
+
+  <!-- Stage B -->
+  <rect x="400" y="40" width="200" height="90" rx="6" fill="#ede9fe" stroke="#6366f1" stroke-width="1.5"/>
+  <text x="420" y="62" fill="#4338ca" font-size="11" font-weight="bold">Stage B: Precise Rank</text>
+  <text x="415" y="82" fill="#475569" font-size="10">Compares items together</text>
+  <text x="415" y="97" fill="#475569" font-size="10">Knows user's history</text>
+  <text x="415" y="112" fill="#475569" font-size="10">Produces final order</text>
+
+  <line x1="600" y1="85" x2="635" y2="85" stroke="#64748b" stroke-width="1.5" marker-end="url(#l1-arr)"/>
+
+  <!-- Output -->
+  <rect x="640" y="65" width="50" height="40" rx="5" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="647" y="83" fill="#166534" font-size="10">Final</text>
+  <text x="649" y="97" fill="#166534" font-size="9">order</text>
+</svg>

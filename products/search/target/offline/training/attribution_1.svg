@@ -1,0 +1,23 @@
+<svg viewBox="0 0 680 170" style="width:100%;max-width:680px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <!-- Viewport area -->
+  <rect x="20" y="10" width="280" height="100" rx="5" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="35" y="30" fill="#166534" font-size="10" font-weight="bold">Viewport (user sees these)</text>
+  <text x="35" y="50" fill="#333" font-size="10">pos 1: Nike Pegasus</text>
+  <text x="35" y="66" fill="#333" font-size="10">pos 2: ASICS Gel</text>
+  <text x="35" y="82" fill="#333" font-size="10">pos 3: Brooks Ghost</text>
+  <text x="35" y="98" fill="#22c55e" font-size="9">No click → confirmed negative</text>
+
+  <!-- Below viewport -->
+  <rect x="20" y="118" width="280" height="44" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2" stroke-dasharray="4"/>
+  <text x="35" y="138" fill="#64748b" font-size="10">pos 15: On Cloud 5</text>
+  <text x="35" y="152" fill="#94a3b8" font-size="9">Never scrolled to → NOT a negative, exclude</text>
+
+  <!-- Label table -->
+  <rect x="350" y="10" width="310" height="150" rx="5" fill="#f7f3eb" stroke="#e8e8e8" stroke-width="1"/>
+  <text x="365" y="32" fill="#010101" font-size="10" font-weight="bold">Training label logic:</text>
+  <text x="365" y="54" fill="#333" font-size="10">seen + no click → negative (weight: 1.0)</text>
+  <text x="365" y="74" fill="#333" font-size="10">seen + click    → positive</text>
+  <text x="365" y="94" fill="#333" font-size="10">not seen        → exclude from training</text>
+  <text x="365" y="114" fill="#333" font-size="10">no viewport data → negative (weight: 0.5)</text>
+  <text x="365" y="140" fill="#64748b" font-size="9">SDK: IntersectionObserver, 50% visible + 1s threshold</text>
+</svg>
