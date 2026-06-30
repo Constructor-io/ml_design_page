@@ -1,31 +1,46 @@
 # ML Design Documents
 
-## Что это
+## What is this
 
-Набор технических design-документов для ML-системы e-commerce search/recommendations (Constructor.io). Описывают целевую архитектуру — к которой стремимся, не текущее состояние.
+Interactive architecture documentation for Constructor.io ML systems. Builds into a single-page HTML (`index.html`) from markdown + SVG files.
 
-## Файлы
+## Structure
 
-- `principles.md` — инженерные принципы ML платформы
-- `attribution.md` — attribution pipeline (как связываем действия юзеров с запросами для training data)
-- `retrieval.md` — L0: multi-stream retrieval (candidate generation, 800-1200 items)
-- `personalization.md` — personalization: scoring model + embedding model
-- `reranker.md` — L1: two-stage reranker (Stage A pointwise GBDT + Stage B listwise neural)
-- `reranker_current_state.md` — reference: текущая система (как есть сейчас)
+```
+build.py                    — builds index.html from products/
+template.html               — HTML template with JS logic
+products/_products.yaml     — product registry (menu order)
+products/{product}/{current|target}/{online|offline}/
+  diagram.svg               — clickable architecture diagram
+  {section}/*.md            — block descriptions (shown on click)
+  {section}/*.svg           — diagrams, inlined via ![](file.svg)
+```
 
-## Контекст
+## Build
 
-SaaS product search. 200+ клиентов (e-commerce stores). Multi-tenant: shared infra, per-customer models/configs.
+```bash
+python build.py              # → index.html
+python build.py --watch      # dev server with livereload on :3333
+```
 
-Кодовые базы для reference:
-- `../lingoml` — ML библиотека (reranker models, preprocessing, backends)
+## Context
+
+SaaS product search. 200+ customers (e-commerce stores). Multi-tenant: shared infra, per-customer models/configs.
+
+Related codebases for reference:
+- `../lingoml` — ML library (reranker models, preprocessing, backends)
 - `../data-pipeline` — training pipelines (Luigi/Spark, feature store, customer configs)
 - `../autocomplete` — serving (reranker service, feature store client, SABR)
 
-## Как писать
+## Writing content
 
-- Суровая техническая дока. Без воды, без продуктовых/мотивационных предложений. Все всё понимают.
-- Описываем целевое состояние системы, не переход из текущего. Не нужен roadmap.
-- Учитываем реальные ограничения (inverted index никуда не денется, reranker service существует), но не отталкиваемся от текущих ограничений при проектировании.
-- Русский язык, технические термины на английском.
-- Стиль: как retrieval.md и personalization.md — structured, concise, с примерами и диаграммами где нужно.
+- Dense technical documentation. No fluff, no motivational framing.
+- Target describes the desired end-state, current describes how things work today.
+- Style: structured, concise, with examples and diagrams where needed.
+- SVG diagrams are separate files, referenced from md via `![](diagram.svg)`.
+- Each block md file must have frontmatter with `id` (matches `data-click` in SVG), `title`, `position`.
+- Clickable elements in SVG: `<g data-click="block_id" style="cursor:pointer">`.
+
+## Deploy
+
+Push to master → GitHub Actions → GitHub Pages: https://constructor-io.github.io/ml_design_page/
