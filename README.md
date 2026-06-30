@@ -3,6 +3,7 @@
 Interactive architecture documentation for Constructor.io ML systems.
 
 **Live:** https://constructor-io.github.io/ml_design_page/
+<img width="1699" height="899" alt="Screenshot 2026-06-30 at 15 31 38" src="https://github.com/user-attachments/assets/8c3bfea6-70b3-49a2-a3c6-b7fcbe785c1e" />
 
 ## Products
 
