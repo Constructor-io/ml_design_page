@@ -1,0 +1,31 @@
+<svg viewBox="0 0 640 200" style="width:100%;max-width:640px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ibk" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <!-- Pipeline -->
+  <rect x="20" y="20" width="150" height="50" rx="5" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="95" y="40" text-anchor="middle" fill="#1e40af" font-size="9" font-weight="bold">Behavioral logs</text>
+  <text x="95" y="55" text-anchor="middle" fill="#64748b" font-size="9">2 weeks of queries</text>
+
+  <line x1="170" y1="45" x2="195" y2="45" stroke="#64748b" stroke-width="1" marker-end="url(#ibk)"/>
+
+  <rect x="200" y="20" width="160" height="50" rx="5" fill="#e0f2fe" stroke="#0ea5e9"/>
+  <text x="280" y="40" text-anchor="middle" fill="#0c4a6e" font-size="9" font-weight="bold">Tokenize queries</text>
+  <text x="280" y="55" text-anchor="middle" fill="#64748b" font-size="9">group by (token, item)</text>
+
+  <line x1="360" y1="45" x2="385" y2="45" stroke="#64748b" stroke-width="1" marker-end="url(#ibk)"/>
+
+  <rect x="390" y="20" width="230" height="50" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="505" y="40" text-anchor="middle" fill="#166534" font-size="9" font-weight="bold">Score calculation</text>
+  <text x="505" y="55" text-anchor="middle" fill="#166534" font-size="9">(token-item actions / item actions) * 4 + 1.7</text>
+
+  <!-- Example -->
+  <rect x="20" y="90" width="600" height="96" rx="5" fill="#fffbeb" stroke="#f59e0b" stroke-width="1"/>
+  <text x="40" y="108" fill="#92400e" font-size="9" font-weight="bold">Example: item "Nike Running Shoes"</text>
+
+  <text x="40" y="128" fill="#1e293b" font-size="9">total item actions = 1000 (from all queries)</text>
+  <text x="40" y="144" fill="#1e293b" font-size="9">token "running" → 400 actions with this item → score = (400/1000)*4 + 1.7 = 3.3</text>
+  <text x="40" y="160" fill="#1e293b" font-size="9">token "shoes"   → 800 actions with this item → score = (800/1000)*4 + 1.7 = 4.9</text>
+  <text x="40" y="176" fill="#64748b" font-size="9">scores multiplied by IDEAL_STD (200K) → "running":660K, "shoes":980K in inverted index</text>
+</svg>

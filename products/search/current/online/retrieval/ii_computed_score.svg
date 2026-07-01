@@ -1,0 +1,35 @@
+<svg viewBox="0 0 620 180" style="width:100%;max-width:620px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ics" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <!-- Input features -->
+  <rect x="20" y="20" width="240" height="100" rx="5" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="140" y="38" text-anchor="middle" fill="#1e40af" font-size="10" font-weight="bold">Features (per item, daily)</text>
+  <text x="35" y="56" fill="#1e40af" font-size="9">clicks_1d, clicks_7d, clicks_30d</text>
+  <text x="35" y="70" fill="#1e40af" font-size="9">add_to_carts_1d, ..._7d, ..._30d</text>
+  <text x="35" y="84" fill="#1e40af" font-size="9">purchases_1d, ..._7d, ..._30d</text>
+  <text x="35" y="98" fill="#64748b" font-size="9">+ other action aggregations</text>
+  <text x="35" y="112" fill="#64748b" font-size="8">(different weights for different customers/days)</text>
+
+  <!-- Arrow -->
+  <line x1="260" y1="70" x2="295" y2="70" stroke="#64748b" stroke-width="1.2" marker-end="url(#ics)"/>
+
+  <!-- Model -->
+  <rect x="300" y="45" width="160" height="50" rx="5" fill="#f3f0ff" stroke="#7c3aed" stroke-width="1.5"/>
+  <text x="380" y="66" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="bold">Linear Regression</text>
+  <text x="380" y="82" text-anchor="middle" fill="#64748b" font-size="9">per-customer, re-fit daily</text>
+
+  <!-- Arrow -->
+  <line x1="460" y1="70" x2="495" y2="70" stroke="#64748b" stroke-width="1.2" marker-end="url(#ics)"/>
+
+  <!-- Output -->
+  <rect x="500" y="45" width="100" height="50" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="550" y="66" text-anchor="middle" fill="#166534" font-size="10" font-weight="bold">Score</text>
+  <text x="550" y="82" text-anchor="middle" fill="#166534" font-size="9">[1 - 1M]</text>
+
+  <!-- Delivery -->
+  <rect x="300" y="120" width="300" height="40" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="450" y="137" text-anchor="middle" fill="#475569" font-size="9" font-weight="bold">Delivery: MySQL → Index Builder → Inverted Index</text>
+  <text x="450" y="152" text-anchor="middle" fill="#64748b" font-size="9">Stored in data_set_items.computed_score, applied at build time</text>
+</svg>

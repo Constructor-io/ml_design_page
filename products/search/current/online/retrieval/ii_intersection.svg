@@ -1,0 +1,57 @@
+<svg viewBox="0 0 660 280" style="width:100%;max-width:660px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ixi" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <!-- Token: white -->
+  <rect x="20" y="20" width="80" height="30" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="60" y="39" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">white</text>
+  <line x1="100" y1="35" x2="130" y2="35" stroke="#64748b" stroke-width="1.2" marker-end="url(#ixi)"/>
+
+  <!-- Posting list white -->
+  <rect x="135" y="22" width="500" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="145" y="26" width="70" height="18" rx="3" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="180" y="38" text-anchor="middle" fill="#166534" font-size="9">item1, 123</text>
+  <rect x="222" y="26" width="65" height="18" rx="3" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="254" y="38" text-anchor="middle" fill="#475569" font-size="9">item2, 80</text>
+  <rect x="294" y="26" width="65" height="18" rx="3" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="326" y="38" text-anchor="middle" fill="#475569" font-size="9">item4, 55</text>
+  <rect x="366" y="26" width="75" height="18" rx="3" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="403" y="38" text-anchor="middle" fill="#166534" font-size="9">item9, 490</text>
+
+  <!-- Token: bread -->
+  <rect x="20" y="70" width="80" height="30" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="60" y="89" text-anchor="middle" fill="#0c4a6e" font-size="11" font-weight="bold">bread</text>
+  <line x1="100" y1="85" x2="130" y2="85" stroke="#64748b" stroke-width="1.2" marker-end="url(#ixi)"/>
+
+  <!-- Posting list bread -->
+  <rect x="135" y="72" width="500" height="26" rx="4" fill="#f8fafc" stroke="#94a3b8"/>
+  <rect x="145" y="76" width="75" height="18" rx="3" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="182" y="88" text-anchor="middle" fill="#166534" font-size="9">item1, 250</text>
+  <rect x="227" y="76" width="70" height="18" rx="3" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="262" y="88" text-anchor="middle" fill="#475569" font-size="9">item3, 90</text>
+  <rect x="304" y="76" width="65" height="18" rx="3" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="336" y="88" text-anchor="middle" fill="#475569" font-size="9">item5, 44</text>
+  <rect x="376" y="76" width="75" height="18" rx="3" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="413" y="88" text-anchor="middle" fill="#166534" font-size="9">item9, 167</text>
+
+  <!-- Intersection arrows -->
+  <line x1="180" y1="48" x2="250" y2="125" stroke="#22c55e" stroke-width="1.2"/>
+  <line x1="403" y1="48" x2="400" y2="125" stroke="#22c55e" stroke-width="1.2"/>
+  <line x1="182" y1="98" x2="270" y2="125" stroke="#22c55e" stroke-width="1.2"/>
+  <line x1="413" y1="98" x2="420" y2="125" stroke="#22c55e" stroke-width="1.2"/>
+
+  <!-- Intersection result -->
+  <rect x="190" y="128" width="280" height="28" rx="5" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="330" y="146" text-anchor="middle" fill="#166534" font-size="10" font-weight="bold">Intersection: item1, item9</text>
+
+  <line x1="330" y1="156" x2="330" y2="178" stroke="#64748b" stroke-width="1.2" marker-end="url(#ixi)"/>
+
+  <!-- Hmean calculation -->
+  <rect x="80" y="182" width="500" height="80" rx="6" fill="#ede9fe" stroke="#6366f1" stroke-width="1.2"/>
+  <text x="330" y="200" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">Weighted Harmonic Mean</text>
+
+  <text x="100" y="222" fill="#4338ca" font-size="10">item1: Hmean(123 + 3*IDEAL_STD, 250 + 3*IDEAL_STD)</text>
+  <text x="100" y="240" fill="#4338ca" font-size="10">item9: Hmean(490 + 3*IDEAL_STD, 167 + 3*IDEAL_STD)</text>
+  <text x="100" y="256" fill="#64748b" font-size="9">IDEAL_STD = 200,000 | exact match boost = 3 * IDEAL_STD</text>
+</svg>

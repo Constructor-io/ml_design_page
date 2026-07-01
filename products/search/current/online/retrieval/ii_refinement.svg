@@ -1,0 +1,26 @@
+<svg viewBox="0 0 620 170" style="width:100%;max-width:620px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="irf" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <!-- Auto rules -->
+  <rect x="20" y="20" width="270" height="60" rx="5" fill="#fef3c7" stroke="#f59e0b"/>
+  <text x="155" y="40" text-anchor="middle" fill="#92400e" font-size="10" font-weight="bold">Auto affinity rules</text>
+  <text x="155" y="56" text-anchor="middle" fill="#92400e" font-size="9">t-test: token ↔ facet association</text>
+  <text x="155" y="70" text-anchor="middle" fill="#64748b" font-size="9">Pipeline: pipelines.query_refinements</text>
+
+  <!-- Manual rules -->
+  <rect x="310" y="20" width="290" height="60" rx="5" fill="#dbeafe" stroke="#3b82f6"/>
+  <text x="455" y="40" text-anchor="middle" fill="#1e40af" font-size="10" font-weight="bold">Manual searchandising</text>
+  <text x="455" y="56" text-anchor="middle" fill="#1e40af" font-size="9">DSI-managed: boost/bury/slot rules</text>
+  <text x="455" y="70" text-anchor="middle" fill="#64748b" font-size="9">MySQL: refined_query_rules table</text>
+
+  <!-- Arrows -->
+  <line x1="155" y1="80" x2="250" y2="108" stroke="#64748b" stroke-width="1" marker-end="url(#irf)"/>
+  <line x1="455" y1="80" x2="370" y2="108" stroke="#64748b" stroke-width="1" marker-end="url(#irf)"/>
+
+  <!-- Applied -->
+  <rect x="170" y="110" width="280" height="42" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="310" y="128" text-anchor="middle" fill="#1e293b" font-size="9" font-weight="bold">At query time: match query → rules → boost/bury/slot</text>
+  <text x="310" y="144" text-anchor="middle" fill="#64748b" font-size="9">Also used for blacklist/whitelist filtering</text>
+</svg>

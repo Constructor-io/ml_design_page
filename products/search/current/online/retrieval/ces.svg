@@ -1,0 +1,60 @@
+<svg viewBox="0 0 720 400" style="width:100%;max-width:720px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ces-arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <text x="360" y="16" text-anchor="middle" fill="#64748b" font-size="9">CES — SERVING ARCHITECTURE</text>
+
+  <!-- Query -->
+  <rect x="250" y="28" width="220" height="32" rx="5" fill="#fef3c7" stroke="#d97706" stroke-width="1.5"/>
+  <text x="360" y="48" text-anchor="middle" fill="#92400e" font-size="11" font-weight="bold">Query: "trail runners"</text>
+
+  <line x1="360" y1="60" x2="360" y2="80" stroke="#64748b" stroke-width="1.2" marker-end="url(#ces-arr)"/>
+
+  <!-- SABR calls CE Service -->
+  <rect x="220" y="83" width="280" height="34" rx="5" fill="#e0f2fe" stroke="#0ea5e9"/>
+  <text x="360" y="104" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="bold">SABR → gRPC → CE Service (:8201)</text>
+
+  <line x1="360" y1="117" x2="360" y2="137" stroke="#64748b" stroke-width="1.2" marker-end="url(#ces-arr)"/>
+
+  <!-- CE Service internals -->
+  <rect x="80" y="140" width="560" height="140" rx="8" fill="#f8fafc" stroke="#7c3aed" stroke-width="1.2"/>
+  <text x="360" y="158" text-anchor="middle" fill="#5b21b6" font-size="10" font-weight="bold">CE Service (Rust, in-memory)</text>
+
+  <!-- Embed -->
+  <rect x="110" y="170" width="180" height="40" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+  <text x="200" y="187" text-anchor="middle" fill="#4c1d95" font-size="9" font-weight="bold">Embed query</text>
+  <text x="200" y="201" text-anchor="middle" fill="#64748b" font-size="9">FastText/Transformer/ONNX</text>
+
+  <line x1="290" y1="190" x2="320" y2="190" stroke="#64748b" stroke-width="1" marker-end="url(#ces-arr)"/>
+
+  <!-- ANN -->
+  <rect x="325" y="170" width="140" height="40" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+  <text x="395" y="187" text-anchor="middle" fill="#4c1d95" font-size="9" font-weight="bold">ANN kNN search</text>
+  <text x="395" y="201" text-anchor="middle" fill="#64748b" font-size="9">Granne HNSW</text>
+
+  <line x1="465" y1="190" x2="495" y2="190" stroke="#64748b" stroke-width="1" marker-end="url(#ces-arr)"/>
+
+  <!-- Top-K -->
+  <rect x="500" y="170" width="120" height="40" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+  <text x="560" y="187" text-anchor="middle" fill="#166534" font-size="9" font-weight="bold">top-K items</text>
+  <text x="560" y="201" text-anchor="middle" fill="#166534" font-size="9">(cid, distance)</text>
+
+  <!-- Models loaded -->
+  <rect x="110" y="225" width="510" height="44" rx="4" fill="#fefce8" stroke="#eab308" stroke-dasharray="3"/>
+  <text x="130" y="242" fill="#854d0e" font-size="9" font-weight="bold">Models in memory:</text>
+  <text x="130" y="258" fill="#854d0e" font-size="9">Keyvi (FastText vectors) + Granne index (HNSW) + ONNX runtime (Transformer) | hot-reload every 30s</text>
+
+  <!-- Arrow out -->
+  <line x1="360" y1="280" x2="360" y2="300" stroke="#64748b" stroke-width="1.2" marker-end="url(#ces-arr)"/>
+
+  <!-- Score conversion -->
+  <rect x="140" y="303" width="440" height="34" rx="5" fill="#ede9fe" stroke="#6366f1" stroke-width="1.2"/>
+  <text x="360" y="320" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">ces_score = int(IDEAL_AVG + 3 * IDEAL_STD * (1 - distance))</text>
+
+  <line x1="360" y1="337" x2="360" y2="355" stroke="#64748b" stroke-width="1.2" marker-end="url(#ces-arr)"/>
+
+  <!-- Injected into SABR -->
+  <rect x="150" y="358" width="420" height="32" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.2"/>
+  <text x="360" y="378" text-anchor="middle" fill="#1e293b" font-size="10">Injected as extra_items into II candidate pool → unified ranking</text>
+</svg>

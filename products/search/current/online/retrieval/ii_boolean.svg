@@ -1,0 +1,27 @@
+<svg viewBox="0 0 700 240" style="width:100%;max-width:700px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ib2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <!-- Input query -->
+  <rect x="20" y="10" width="660" height="26" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="350" y="27" text-anchor="middle" fill="#92400e" font-size="10">Query: "mac book shellf" → corrections found: shelf, sheaf, bookshelf, macbook</text>
+
+  <line x1="350" y1="36" x2="350" y2="55" stroke="#64748b" stroke-width="1.2" marker-end="url(#ib2)"/>
+
+  <!-- Boolean expression -->
+  <rect x="20" y="58" width="660" height="60" rx="6" fill="#f8fafc" stroke="#64748b"/>
+  <text x="40" y="76" fill="#475569" font-size="9" font-weight="bold">Compiled boolean expression:</text>
+  <text x="40" y="96" fill="#1e293b" font-size="10">((macbook OR (mac AND book)) AND (shelf OR sheaf))</text>
+  <text x="40" y="112" fill="#1e293b" font-size="10">OR (mac AND (bookshelf OR (book AND shelf)))</text>
+
+  <line x1="350" y1="118" x2="350" y2="138" stroke="#64748b" stroke-width="1.2" marker-end="url(#ib2)"/>
+
+  <!-- Evaluation -->
+  <rect x="40" y="141" width="620" height="84" rx="5" fill="#ede9fe" stroke="#6366f1"/>
+  <text x="60" y="158" fill="#4338ca" font-size="9" font-weight="bold">Each branch evaluated independently (SCOREFUNC reduces fuzzy matches):</text>
+
+  <text x="60" y="178" fill="#1e293b" font-size="9">macbook + shelf → items in both posting lists → id4: Hmean(SCOREFUNC(227), SCOREFUNC(34))</text>
+  <text x="60" y="194" fill="#1e293b" font-size="9">mac + bookshelf → items in both posting lists → id6: Hmean(227, SCOREFUNC(18))</text>
+  <text x="60" y="210" fill="#64748b" font-size="9">SCOREFUNC penalizes based on edit distance: corrections score lower than exact matches</text>
+</svg>

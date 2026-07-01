@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 580" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="ia" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,1 L6,3.5 L0,6" fill="none" stroke="#475569" stroke-width="1"/>
+    </marker>
+  </defs>
+
+  <text x="310" y="16" text-anchor="middle" fill="#64748b" font-size="9">INVERTED INDEX — SCORING PIPELINE</text>
+
+  <!-- Input -->
+  <rect x="190" y="28" width="240" height="28" rx="4" fill="#fef3c7" stroke="#d97706"/>
+  <text x="310" y="46" text-anchor="middle" fill="#92400e" font-size="10">query: "white bread" → tokens: [white, bread]</text>
+
+  <line x1="310" y1="56" x2="310" y2="74" stroke="#475569" stroke-width="1.2" marker-end="url(#ia)"/>
+
+  <!-- Index build-time factors -->
+  <rect x="30" y="78" width="560" height="190" rx="8" fill="#f8fafc" stroke="#64748b" stroke-dasharray="4"/>
+  <text x="50" y="96" fill="#475569" font-size="9" font-weight="bold">TOKEN SCORE (per token-item pair, computed at index build time)</text>
+
+  <g data-click="ii_computed_score" style="cursor:pointer">
+    <rect x="50" y="108" width="245" height="44" rx="5" fill="#dbeafe" stroke="#3b82f6"/>
+    <text x="172" y="127" text-anchor="middle" fill="#1e40af" font-size="10" font-weight="bold">dsi_computed_score</text>
+    <text x="172" y="143" text-anchor="middle" fill="#64748b" font-size="9">item-level, linear regression on actions</text>
+  </g>
+
+  <g data-click="ii_behavior_kw" style="cursor:pointer">
+    <rect x="310" y="108" width="265" height="44" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="442" y="127" text-anchor="middle" fill="#166534" font-size="10" font-weight="bold">behavior_keywords</text>
+    <text x="442" y="143" text-anchor="middle" fill="#64748b" font-size="9">token-item, (actions/total)*4+1.7</text>
+  </g>
+
+  <g data-click="ii_group_kw" style="cursor:pointer">
+    <rect x="50" y="162" width="245" height="44" rx="5" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="172" y="181" text-anchor="middle" fill="#92400e" font-size="10" font-weight="bold">group_keywords</text>
+    <text x="172" y="197" text-anchor="middle" fill="#64748b" font-size="9">token-group, same as behavior_kw</text>
+  </g>
+
+  <g data-click="ii_cosine" style="cursor:pointer">
+    <rect x="310" y="162" width="265" height="44" rx="5" fill="#ede9fe" stroke="#6366f1"/>
+    <text x="442" y="181" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">cosine_similarity</text>
+    <text x="442" y="197" text-anchor="middle" fill="#64748b" font-size="9">token-item, FastText distance</text>
+  </g>
+
+  <!-- Hmean -->
+  <rect x="140" y="220" width="340" height="30" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="310" y="239" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="bold">Hmean(token_scores) + SCOREFUNC(edit_distance)</text>
+
+  <line x1="310" y1="268" x2="310" y2="288" stroke="#475569" stroke-width="1.2" marker-end="url(#ia)"/>
+
+  <!-- Computed score output -->
+  <rect x="200" y="291" width="220" height="26" rx="4" fill="#f1f5f9" stroke="#94a3b8"/>
+  <text x="310" y="308" text-anchor="middle" fill="#1e293b" font-size="10">computed_score (per item)</text>
+
+  <line x1="310" y1="317" x2="310" y2="337" stroke="#475569" stroke-width="1.2" marker-end="url(#ia)"/>
+
+  <!-- Query-time boosts -->
+  <rect x="30" y="340" width="560" height="130" rx="8" fill="#f8fafc" stroke="#64748b" stroke-dasharray="4"/>
+  <text x="50" y="358" fill="#475569" font-size="9" font-weight="bold">QUERY-TIME BOOSTS (applied after inverted index read)</text>
+
+  <g data-click="ii_conversion" style="cursor:pointer">
+    <rect x="50" y="370" width="165" height="44" rx="5" fill="#dcfce7" stroke="#22c55e"/>
+    <text x="132" y="389" text-anchor="middle" fill="#166534" font-size="10" font-weight="bold">conversion_boost</text>
+    <text x="132" y="405" text-anchor="middle" fill="#64748b" font-size="9">CTR + L2R (XGBoost)</text>
+  </g>
+
+  <g data-click="ii_refinement" style="cursor:pointer">
+    <rect x="225" y="370" width="165" height="44" rx="5" fill="#fef3c7" stroke="#f59e0b"/>
+    <text x="307" y="389" text-anchor="middle" fill="#92400e" font-size="10" font-weight="bold">refinement_boost</text>
+    <text x="307" y="405" text-anchor="middle" fill="#64748b" font-size="9">affinity rules + manual</text>
+  </g>
+
+  <g data-click="ii_personalization" style="cursor:pointer">
+    <rect x="400" y="370" width="175" height="44" rx="5" fill="#ede9fe" stroke="#6366f1"/>
+    <text x="487" y="389" text-anchor="middle" fill="#4338ca" font-size="10" font-weight="bold">personalization_boost</text>
+    <text x="487" y="405" text-anchor="middle" fill="#64748b" font-size="9">item-item graph, user history</text>
+  </g>
+
+  <!-- Sum -->
+  <rect x="140" y="428" width="340" height="26" rx="5" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="1.5"/>
+  <text x="310" y="445" text-anchor="middle" fill="#0c4a6e" font-size="10">+ weighted_relations_boost</text>
+
+  <line x1="310" y1="470" x2="310" y2="500" stroke="#475569" stroke-width="1.2" marker-end="url(#ia)"/>
+
+  <!-- Final score -->
+  <rect x="140" y="503" width="340" height="34" rx="6" fill="#f1f5f9" stroke="#1e293b" stroke-width="1.5"/>
+  <text x="310" y="524" text-anchor="middle" fill="#1e293b" font-size="11" font-weight="bold">final_score → L1 Reranker</text>
+
+  <!-- CES side input -->
+  <g data-click="ces" style="cursor:pointer">
+    <rect x="470" y="282" width="120" height="34" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+    <text x="530" y="296" text-anchor="middle" fill="#4c1d95" font-size="9" font-weight="bold">CES items</text>
+    <text x="530" y="310" text-anchor="middle" fill="#64748b" font-size="8">extra_items</text>
+  </g>
+  <line x1="470" y1="304" x2="420" y2="304" stroke="#7c3aed" stroke-width="1" marker-end="url(#ia)" stroke-dasharray="3"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg viewBox="0 0 620 200" style="width:100%;max-width:620px;margin:16px 0" xmlns="http://www.w3.org/2000/svg" font-family="monospace" font-size="11">
+  <defs>
+    <marker id="cm" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6" fill="none" stroke="#64748b" stroke-width="1"/></marker>
+  </defs>
+
+  <text x="310" y="14" text-anchor="middle" fill="#64748b" font-size="9">C++ INDEX SERVICE — MERGE (iterator_factory.cpp)</text>
+
+  <!-- II iterator -->
+  <rect x="30" y="30" width="200" height="44" rx="5" fill="#e0f2fe" stroke="#0ea5e9"/>
+  <text x="130" y="49" text-anchor="middle" fill="#0c4a6e" font-size="10" font-weight="bold">II iterator</text>
+  <text x="130" y="65" text-anchor="middle" fill="#64748b" font-size="9">boolean_expr → posting lists</text>
+
+  <!-- CES extra_item_iter -->
+  <rect x="30" y="84" width="200" height="44" rx="5" fill="#f3f0ff" stroke="#7c3aed"/>
+  <text x="130" y="103" text-anchor="middle" fill="#4c1d95" font-size="10" font-weight="bold">extra_item_iter</text>
+  <text x="130" y="119" text-anchor="middle" fill="#64748b" font-size="9">CES items (cid → score)</text>
+
+  <!-- Arrows to union -->
+  <line x1="230" y1="52" x2="280" y2="75" stroke="#64748b" stroke-width="1.2" marker-end="url(#cm)"/>
+  <line x1="230" y1="106" x2="280" y2="83" stroke="#64748b" stroke-width="1.2" marker-end="url(#cm)"/>
+
+  <!-- union_iter -->
+  <rect x="285" y="60" width="140" height="38" rx="5" fill="#dcfce7" stroke="#22c55e" stroke-width="1.5"/>
+  <text x="355" y="83" text-anchor="middle" fill="#166534" font-size="10" font-weight="bold">union_iter_t</text>
+
+  <line x1="425" y1="79" x2="460" y2="79" stroke="#64748b" stroke-width="1.2" marker-end="url(#cm)"/>
+
+  <!-- Scoring pipeline -->
+  <rect x="465" y="60" width="140" height="38" rx="5" fill="#f1f5f9" stroke="#1e293b"/>
+  <text x="535" y="76" text-anchor="middle" fill="#1e293b" font-size="9" font-weight="bold">Same scoring</text>
+  <text x="535" y="90" text-anchor="middle" fill="#64748b" font-size="9">+ boosts → final_score</text>
+
+  <!-- Note about dedup -->
+  <rect x="30" y="148" width="560" height="40" rx="4" fill="#fffbeb" stroke="#f59e0b"/>
+  <text x="310" y="165" text-anchor="middle" fill="#92400e" font-size="9" font-weight="bold">If item found in BOTH II and CES:</text>
+  <text x="310" y="180" text-anchor="middle" fill="#92400e" font-size="9">max_score_per_source tracks both. Item scored by II pipeline. ces_distance saved as reranker feature.</text>
+</svg>
