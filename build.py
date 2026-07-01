@@ -148,6 +148,7 @@ def _basic_md_to_html(text: str) -> str:
     table_rows = []
     list_items = []
 
+    code_lines = []
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -155,18 +156,17 @@ def _basic_md_to_html(text: str) -> str:
         # Fenced code blocks
         if line.strip().startswith("```"):
             if in_code_block:
-                html_parts.append("</code></pre>")
+                html_parts.append("<pre><code>" + "\n".join(code_lines) + "</code></pre>")
+                code_lines = []
                 in_code_block = False
             else:
                 lang = line.strip()[3:].strip()
-                html_parts.append(f"<pre><code>")
                 in_code_block = True
             i += 1
             continue
 
         if in_code_block:
-            html_parts.append(_escape_html(line))
-            html_parts.append("\n")
+            code_lines.append(_escape_html(line))
             i += 1
             continue
 
@@ -222,7 +222,7 @@ def _basic_md_to_html(text: str) -> str:
 
     # Close any open blocks
     if in_code_block:
-        html_parts.append("</code></pre>")
+        html_parts.append("<pre><code>" + "\n".join(code_lines) + "</code></pre>")
     if in_table:
         html_parts.append(_render_table(table_rows))
     if in_list:
